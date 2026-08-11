@@ -3,4 +3,5 @@ vendor/
 output/
 .kujo-commerce/
 .kujo-bin/
+.wrangler/
 .DS_Store
