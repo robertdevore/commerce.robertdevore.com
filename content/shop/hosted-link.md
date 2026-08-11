@@ -15,3 +15,5 @@ commerce:
 
 Switch the site provider to `link` and this product becomes a normal hosted URL
 with no API key, function, SDK, or database.
+
+[Open the harmless hosted-link destination](https://example.com/)
