@@ -10,7 +10,7 @@
   --store-header-height: 4.5rem;
 }
 
-html { background: var(--store-bg); }
+html { overflow-x: clip; background: var(--store-bg); }
 body { margin: 0; background: var(--store-bg); color: var(--store-text); }
 body[data-menu-open] { overflow: hidden; }
 
@@ -38,6 +38,11 @@ h6,
   border-bottom: 1px solid var(--store-border);
   background-color: var(--store-bg);
   isolation: isolate;
+}
+
+body:has(.home) .store-header {
+  background-color: rgba(11,12,14,.72);
+  backdrop-filter: blur(8px);
 }
 
 .store-nav {
@@ -128,23 +133,33 @@ h6,
 .home,
 .page-shell,
 .product-shell { padding-block: clamp(2.75rem, 7vw, 6rem); }
+.home { position: relative; isolation: isolate; }
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(24rem, 1.1fr);
+  position: relative;
+  z-index: 2;
+  display: flex;
   align-items: center;
-  gap: clamp(1.5rem, 4vw, 5rem);
   min-height: min(48rem, calc(100svh - var(--store-header-height)));
   padding: clamp(2rem, 6vw, 6rem) 0;
 }
-.hero-copy { position: relative; z-index: 2; }
+.hero-copy { position: relative; z-index: 2; width: min(100%, 46rem); }
 .hero h1 { max-width: 10ch; font-size: clamp(3rem, 10vw, 8rem); line-height: .9; }
 .hero-copy > p:not(.eyebrow) { max-width: 46rem; color: var(--store-muted); font-size: clamp(1.05rem, 2vw, 1.3rem); }
 .hero-art {
-  position: relative;
-  min-width: 0;
+  position: absolute;
+  z-index: 0;
+  top: calc(-1 * var(--store-header-height) - 1px);
+  left: 50%;
+  width: 100vw;
+  height: calc(var(--store-header-height) + clamp(2.75rem, 7vw, 6rem) + min(48rem, calc(100svh - var(--store-header-height))));
   overflow: hidden;
-  margin: 0;
+  transform: translateX(-50%);
   isolation: isolate;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, var(--store-bg) 0%, rgba(11,12,14,.96) 31%, rgba(11,12,14,.56) 58%, rgba(11,12,14,.16) 82%),
+    linear-gradient(180deg, rgba(11,12,14,.08) 58%, var(--store-bg) 100%),
+    url("../images/hero/commerce-dither.webp") 72% center / cover no-repeat;
 }
 .hero-art::before,
 .hero-art::after {
@@ -154,34 +169,28 @@ h6,
   pointer-events: none;
 }
 .hero-art::before {
-  inset: 12% -2% 10% 14%;
-  border-top: 1px solid rgba(255,255,255,.35);
-  border-bottom: 1px solid rgba(255,255,255,.18);
-  background: repeating-linear-gradient(180deg, transparent 0 8px, rgba(255,255,255,.035) 8px 9px);
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--store-bg) 0%, rgba(11,12,14,.9) 31%, transparent 65%),
+    url("../images/hero/commerce-dither.webp") 72% center / cover no-repeat;
   mix-blend-mode: screen;
-  transform: translateX(2.5%);
+  opacity: .08;
+  animation: commerce-glitch 4.8s steps(1, end) infinite;
 }
 .hero-art::after {
-  width: 22%;
-  height: 13%;
-  right: 3%;
-  top: 16%;
-  border: 1px solid var(--store-accent);
-  background: repeating-linear-gradient(90deg, var(--store-accent) 0 2px, transparent 2px 7px);
-  opacity: .72;
-  transform: translateX(10%);
+  inset: -12px;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 3px, rgba(255,255,255,.1) 3px 4px),
+    repeating-radial-gradient(circle at 70% 42%, rgba(255,255,255,.2) 0 1px, transparent 1px 4px);
+  background-size: 100% 4px, 9px 9px;
+  mix-blend-mode: screen;
+  opacity: .12;
+  animation: commerce-static .22s steps(2, end) infinite;
 }
-.hero-art img {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: contrast(1.08);
-  mask-image: linear-gradient(90deg, transparent 0, black 12%, black 100%);
-}
-.hero-art figcaption {
+.hero-signal {
   position: absolute;
   z-index: 3;
-  inset: auto 0 1rem auto;
+  inset: auto 2rem clamp(2rem, 5vw, 5rem) auto;
   display: flex;
   gap: .75rem;
   padding: .45rem .65rem;
@@ -191,7 +200,25 @@ h6,
   font-size: .65rem;
   letter-spacing: .08em;
 }
-.hero-art figcaption span:first-child { color: var(--store-accent); }
+.hero-signal span:first-child { color: var(--store-accent); }
+.home-features { position: relative; z-index: 2; }
+
+@keyframes commerce-glitch {
+  0%, 86%, 100% { clip-path: inset(0); opacity: .08; transform: translate(0); }
+  87% { clip-path: inset(13% 0 71% 0); opacity: .72; transform: translate(-14px, 2px); }
+  88% { clip-path: inset(58% 0 26% 0); opacity: .48; transform: translate(18px, -2px); }
+  89% { clip-path: inset(33% 0 51% 0); opacity: .64; transform: translate(-7px, 1px); }
+  90% { clip-path: inset(76% 0 10% 0); opacity: .4; transform: translate(11px, 0); }
+  91% { clip-path: inset(0); opacity: .08; transform: translate(0); }
+}
+
+@keyframes commerce-static {
+  0% { transform: translate(0); }
+  25% { transform: translate(3px, -2px); }
+  50% { transform: translate(-2px, 3px); }
+  75% { transform: translate(1px, 2px); }
+  100% { transform: translate(-3px, -1px); }
+}
 .eyebrow { color: var(--store-accent); text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; }
 .lede { max-width: 55ch; font-size: 1.25rem; }
 .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
@@ -312,11 +339,22 @@ h6,
   .desktop-nav { display: none; }
   .mobile-actions { display: flex; }
   .store-brand { letter-spacing: .12em; }
-  .hero { grid-template-columns: 1fr; min-height: auto; gap: 1rem; }
+  body:has(.home) .store-header { background-color: rgba(11,12,14,.9); }
+  .hero { min-height: calc(100svh - var(--store-header-height)); }
   .hero h1 { font-size: 3.4rem; }
-  .hero-art { margin-inline: -1rem; }
-  .hero-art img { mask-image: linear-gradient(180deg, transparent 0, black 13%, black 88%, transparent 100%); }
-  .hero-art figcaption { right: 1rem; bottom: .5rem; }
+  .hero-art {
+    height: calc(100svh + clamp(2.75rem, 7vw, 6rem));
+    background:
+      linear-gradient(180deg, rgba(11,12,14,.42) 0%, rgba(11,12,14,.84) 45%, var(--store-bg) 100%),
+      linear-gradient(90deg, rgba(11,12,14,.76) 0%, rgba(11,12,14,.22) 100%),
+      url("../images/hero/commerce-dither.webp") 68% center / cover no-repeat;
+  }
+  .hero-art::before {
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(11,12,14,.5) 70%, var(--store-bg) 100%),
+      url("../images/hero/commerce-dither.webp") 68% center / cover no-repeat;
+  }
+  .hero-signal { right: 1rem; bottom: 1.25rem; }
   .product-grid { grid-template-columns: 1fr; gap: 1rem; }
   .product-shell { grid-template-columns: 1fr; gap: 1.75rem; }
   .product-media { position: static; }
@@ -330,4 +368,6 @@ h6,
 
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; transition-duration: 0s !important; }
+  .hero-art::before,
+  .hero-art::after { animation: none !important; }
 }

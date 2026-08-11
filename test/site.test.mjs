@@ -23,12 +23,16 @@ test('homepage hero and desktop product split are present', () => {
   const home = fs.readFileSync('templates/page-home.html', 'utf8');
   const shop = fs.readFileSync('templates/shop.html', 'utf8');
   const styles = fs.readFileSync('assets/css/store.css', 'utf8');
-  assert.match(home, /commerce-dither\.webp/);
+  assert.match(home, /class="hero-art" aria-hidden="true"/);
   assert.equal(fs.existsSync('assets/images/hero/commerce-dither.webp'), true);
   assert.match(shop, /class="product-media"/);
   assert.match(shop, /class="product-details"/);
   assert.match(styles, /font-family: var\(--sk-font-mono\)/);
   assert.match(styles, /grid-template-columns: minmax\(0, 1\.08fr\)/);
+  assert.match(styles, /commerce-dither\.webp/);
+  assert.match(styles, /@keyframes commerce-glitch/);
+  assert.match(styles, /@keyframes commerce-static/);
+  assert.match(styles, /prefers-reduced-motion/);
 });
 
 test('SiteKit consumer artifact retains fonts and licenses', () => {
