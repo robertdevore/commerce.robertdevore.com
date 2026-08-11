@@ -1,0 +1,18 @@
+{
+  "name": "commerce.robertdevore.com",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "validate": "npx kujo-commerce validate --site . && node --test",
+    "test": "node --test",
+    "clean-clone": "bash scripts/clean-clone-test.sh"
+  },
+  "dependencies": {
+    "@kujolang/commerce": "github:kujolang/commerce#v0.1.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

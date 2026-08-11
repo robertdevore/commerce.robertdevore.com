@@ -1,0 +1,16 @@
+site_url: https://commerce.robertdevore.com
+site_title: Kujo Commerce Demo
+site_tagline: Static at the core. Extensible at the edges.
+output: output
+content: content
+templates: templates
+assets: assets
+blog_slug: ""
+posts_per_page: 10
+fonts: []
+robots: public
+llms: public
+minify: true
+download_remote_images: false
+no_aliases: true
+no_aux: true
