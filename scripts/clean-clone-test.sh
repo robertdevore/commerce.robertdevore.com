@@ -10,3 +10,6 @@ test -f output/index.html
 test -f output/_kujo/commerce/catalog.json
 test -f output/assets/sitekit/sitekit.css
 test -f output/assets/commerce/commerce.js
+test -f output/sitemap.xml
+test -f output/robots.txt
+test -f output/llms.txt
