@@ -17,6 +17,8 @@ test('mobile navigation and Kujo network footer are present', () => {
   assert.match(layout, /class="icon-button cart-button"/);
   assert.match(layout, /https:\/\/kujolang\.ai/);
   assert.match(layout, /https:\/\/agents\.kujolang\.ai/);
+  assert.match(layout, /kujo-logomark-white\.svg/);
+  assert.equal(fs.existsSync('assets/images/kujo-logomark-white.svg'), true);
 });
 
 test('homepage hero and desktop product split are present', () => {
@@ -33,6 +35,8 @@ test('homepage hero and desktop product split are present', () => {
   assert.match(styles, /@keyframes commerce-glitch/);
   assert.match(styles, /@keyframes commerce-static/);
   assert.match(styles, /prefers-reduced-motion/);
+  assert.match(styles, /border-radius: 0 !important/);
+  assert.match(styles, /--sk-text-link: var\(--store-accent\)/);
 });
 
 test('SiteKit consumer artifact retains fonts and licenses', () => {
