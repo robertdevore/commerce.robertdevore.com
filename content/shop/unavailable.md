@@ -1,6 +1,7 @@
 ---
 title: Future Commerce Kit
 description: An unavailable demo product proving a safe disabled state.
+featured_image: images/products/future-kit.webp
 commerce:
   enabled: true
   sku: future-commerce-kit

@@ -1,6 +1,7 @@
 ---
 title: Kujo Commerce Handbook
 description: A practical guide to static-first, provider-agnostic commerce.
+featured_image: images/products/handbook.webp
 commerce:
   enabled: true
   sku: kujo-commerce-handbook

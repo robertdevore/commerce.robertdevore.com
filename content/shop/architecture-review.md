@@ -1,6 +1,7 @@
 ---
 title: Architecture Review
 description: A fake service product demonstrating provider-neutral service metadata.
+featured_image: images/products/architecture-review.webp
 commerce:
   enabled: true
   sku: architecture-review-demo

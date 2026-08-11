@@ -1,6 +1,7 @@
 ---
 title: Hosted Link Example
 description: A harmless external link demonstrating the zero-runtime commerce level.
+featured_image: images/products/hosted-link.webp
 commerce:
   enabled: true
   sku: hosted-link-example

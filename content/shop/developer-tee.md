@@ -1,6 +1,7 @@
 ---
 title: Kujo Developer Tee
 description: A fake physical product used to demonstrate shipping-capable providers.
+featured_image: images/products/developer-tee.webp
 commerce:
   enabled: true
   sku: kujo-developer-tee

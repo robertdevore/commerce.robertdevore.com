@@ -1,6 +1,7 @@
 ---
 title: Kujo Commerce Pro Demo
 description: A clearly fake monthly subscription for capability testing.
+featured_image: images/products/pro-demo.webp
 commerce:
   enabled: true
   sku: kujo-commerce-pro-demo
