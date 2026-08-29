@@ -4,17 +4,20 @@ custom_url: providers
 description: Explicit capabilities prevent providers from being treated as interchangeable.
 ---
 
-| Capability | Stripe | Polar | Link | Mock |
-|---|---:|---:|---:|---:|
-| Hosted checkout | Yes | Yes | Yes | Yes |
-| Dynamic checkout | Yes | Yes | No | Yes |
-| Multi-item cart | Yes | No | No | Yes |
-| Quantity | Yes | No | No | Yes |
-| Physical products | Yes | No | Delegated | Yes |
-| Subscriptions | Yes | Yes | Delegated | Yes |
-| Customer portal | Yes | Yes | No | Yes |
-| Webhooks | Yes | Yes | No | Yes |
+| Provider | Checkout | Multi-item | Quantity | Subscriptions | Physical | Portal | Webhooks |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Stripe | Session/link | Yes | Yes | Yes | Yes | Yes | Yes |
+| Polar | Session/link | No | No | Yes | No | Yes | Yes |
+| PayPal | Orders/Billing | One-time | Yes | Yes | Yes | No | Yes |
+| Square | Payment Link | Yes | Yes | No* | Yes | No | Yes |
+| Paddle | Transaction | Yes | Yes | Yes | No | Yes | Yes |
+| Lemon Squeezy | Variant checkout | No | No | Yes | No | URL | Yes |
+| Link | Hosted URL | No | No | Delegated | Delegated | No | No |
+| Mock | Simulation | Yes | Yes | Yes | Yes | Simulated | Fixture |
 
-This public deployment selects Mock. Stripe and Polar adapters are verified with
-fixtures; no live payment credentials are configured and no production charge is
-possible. Link proves the completely static purchase path.
+`*` The current Square adapter intentionally does not claim subscription checkout.
+
+This public deployment selects Mock and cannot collect payment. CI runs all eight
+provider adapters through the shared contract suite and fixture request tests.
+Credential-gated workflows are ready for provider sandboxes, but skip cleanly
+when repository secrets are absent. Link proves the completely static path.

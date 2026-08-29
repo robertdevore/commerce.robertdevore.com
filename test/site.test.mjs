@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {capabilities} from '@kujolang/commerce';
 
 const products = ['handbook', 'developer-tee', 'pro-demo', 'architecture-review', 'hosted-link', 'unavailable'];
 
@@ -49,3 +50,9 @@ test('no obvious committed credential values', () => {
   const text = fs.readFileSync('kujo-commerce.yml', 'utf8');
   assert.doesNotMatch(text, /sk_(live|test)_|polar_oat_/);
 });
+
+test('acceptance harness covers every first-party provider contract',()=>{assert.deepEqual(Object.keys(capabilities).sort(),['lemon-squeezy','link','mock','paddle','paypal','polar','square','stripe']);assert.equal(capabilities.polar.multi_item_checkout,false);assert.equal(capabilities.paddle.merchant_of_record,true);});
+
+test('product sources use structured money and exercise variants',()=>{for(const product of products){const source=fs.readFileSync(`content/shop/${product}.md`,'utf8');assert.match(source,/price:\s*(?:\{|\n)[^]*?amount:/);}const tee=fs.readFileSync('content/shop/developer-tee.md','utf8');assert.match(tee,/variants:/);assert.match(tee,/kujo-developer-tee-black-m/);});
+
+test('public Mock webhook fails closed without a configured secret',()=>{const source=fs.readFileSync('functions/_kujo/commerce/webhook.js','utf8');assert.match(source,/if\(!context\.env\.MOCK_WEBHOOK_SECRET\)/);assert.doesNotMatch(source,/public-demo-disabled|\|\|\s*['"]/);});

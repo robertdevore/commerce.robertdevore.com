@@ -1,2 +1,2 @@
 import { webhookHandler } from '@kujolang/commerce/runtime';
-export async function onRequestPost(context){return webhookHandler(context.request,{provider:'mock',secret:context.env.MOCK_WEBHOOK_SECRET||'public-demo-disabled'})}
+export async function onRequestPost(context){if(!context.env.MOCK_WEBHOOK_SECRET)return new Response(JSON.stringify({error:'Webhook endpoint is not configured'}),{status:503,headers:{'content-type':'application/json','cache-control':'no-store'}});return webhookHandler(context.request,{provider:'mock',secret:context.env.MOCK_WEBHOOK_SECRET,executionContext:context})}
