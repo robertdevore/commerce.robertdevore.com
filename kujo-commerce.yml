@@ -12,6 +12,11 @@ cart:
 checkout:
   success_url: https://commerce.robertdevore.com/checkout/success/
   cancel_url: https://commerce.robertdevore.com/checkout/cancel/
+runtime:
+  timeout_ms: 8000
+  rate_limit_documented: true
+webhooks:
+  deduplication: false
 providers:
   mock:
     enabled: true

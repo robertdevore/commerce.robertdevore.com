@@ -6,7 +6,7 @@ commerce:
   enabled: true
   sku: hosted-link-example
   type: digital
-  price: { display: "$0.00 demo", currency: USD }
+  price: { amount: 0, display: "$0.00 demo", currency: USD }
   providers:
     mock: {}
     link: { url: "https://example.com/" }

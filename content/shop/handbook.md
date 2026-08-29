@@ -6,7 +6,7 @@ commerce:
   enabled: true
   sku: kujo-commerce-handbook
   type: digital
-  price: { display: "$29.00", currency: USD }
+  price: { amount: 2900, display: "$29.00", currency: USD }
   providers: { mock: {} }
   cart: { enabled: true, quantity: true, min: 1, max: 10 }
   availability: available

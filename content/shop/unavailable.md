@@ -6,7 +6,7 @@ commerce:
   enabled: true
   sku: future-commerce-kit
   type: digital
-  price: { display: "$49.00", currency: USD }
+  price: { amount: 4900, display: "$49.00", currency: USD }
   providers: { mock: {} }
   cart: { enabled: false, quantity: false, min: 1, max: 1 }
   availability: unavailable

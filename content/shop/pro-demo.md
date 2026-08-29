@@ -6,7 +6,7 @@ commerce:
   enabled: true
   sku: kujo-commerce-pro-demo
   type: subscription
-  price: { display: "$12.00 / month", currency: USD }
+  price: { amount: 1200, display: "$12.00 / month", currency: USD }
   providers: { mock: {} }
   cart: { enabled: true, quantity: true, min: 1, max: 1 }
   availability: available

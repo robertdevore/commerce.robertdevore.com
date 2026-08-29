@@ -6,7 +6,7 @@ commerce:
   enabled: true
   sku: architecture-review-demo
   type: service
-  price: { display: "$250.00", currency: USD }
+  price: { amount: 25000, display: "$250.00", currency: USD }
   providers: { mock: {} }
   cart: { enabled: true, quantity: true, min: 1, max: 1 }
   availability: available
