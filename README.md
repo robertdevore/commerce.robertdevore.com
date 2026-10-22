@@ -13,8 +13,8 @@ kujo serve output --port 8080
 
 Builds obtain the portable Kujo `v1.0.1` binary and exact SSG `v1.0.0` tag when local checkouts are absent. SiteKit
 `v1.0.0`'s supported `dist/` artifact is vendored under `assets/sitekit/` with
-fonts and licenses intact. Commerce is pinned to reviewed commit
-`d94e2c3591bc363d745922aaf6b70ba471b82362` (`0.3.0`) until the next immutable
-release tag is cut.
+fonts and licenses intact. Commerce is pinned to the published npm package
+`@kujolang/commerce@0.5.1`; the lockfile records its integrity.
+Use Node.js 22.23.4+, 24.22.1+, or 26.12.1+ within the supported release lines.
 
 Cloudflare Pages automatically deploys the production site from `main`.

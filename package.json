@@ -10,7 +10,7 @@
     "clean-clone": "bash scripts/clean-clone-test.sh"
   },
   "dependencies": {
-    "@kujolang/commerce": "0.4.0"
+    "@kujolang/commerce": "0.5.1"
   },
   "engines": {
     "node": ">=22.23.4 <23 || >=24.22.1 <25 || >=26.12.1"
