@@ -5,3 +5,4 @@ output/
 .kujo-bin/
 .wrangler/
 .DS_Store
+.security-checkpoint/
